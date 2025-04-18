@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InkPersona</title>
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Navbar custom blue color */
+        .navbar {
+            background-color: #007bff;  /* Blue background */
+        }
+
+        .navbar-nav .nav-link {
+            color: white;  /* White text color */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #dcdcdc; /* Lighter color on hover */
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .navbar {
+            background-color: #333;  /* Dark background for navbar */
+        }
+
+        .dark-mode .navbar-nav .nav-link {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .navbar-nav .nav-link:hover {
+            color: #bbbbbb;
+        }
+
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .form-card {
+            background-color: #1e1e1e;
+            color: #fff;
+            border: 1px solid #333;
+        }
+        
+        body.dark-mode .form-control-custom {
+            background-color: #2b2b2b;
+            color: #fff;
+            border: 1px solid #555;
+        }
+        
+        body.dark-mode .form-control-custom::placeholder {
+            color: #aaa;
+        }
+        
+        <style>
+            .character-card {
+                background-color: #ffffff;
+                color: #000000;
+                border: 1px solid #dee2e6;
+                transition: background-color 0.3s, color 0.3s;
+            }
+        
+            body.dark-mode .character-card {
+                background-color: #1e1e1e;
+                color: #f1f1f1;
+                border-color: #444;
+            }
+        
+            body.dark-mode .character-card .card-text strong {
+                color: #e0e0e0;
+            }
+        
+            body.dark-mode .character-card .btn-primary {
+                background-color: #0d6efd;
+                color: #fff;
+                border-color: #0d6efd;
+            }
+            .navbar-brand {
+                color: #000 !important; /* Default light mode */
+                font-weight: bold;
+            }
+        
+            body.dark-mode .navbar-brand {
+                color: #ffffff !important; /* Adjust this for dark mode */
+            }
+        </style>
+        
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{% url 'homepage' %}">InkPersona</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_character' %}">Create Character</a>
+                </li>
+            </ul>
+        </div>
+        <button id="darkModeToggle" class="btn btn-dark"> Dark Mode</button>
+    </nav>
+
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block extra_js %}
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for stored dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center my-4">Welcome to InkPersona✒️</h1>
+
+    {% if characters %}
+        <h2 class="my-4 text-center">Characters Available for Interviews:</h2>
+        <div class="row">
+            {% for character in characters %}
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="card character-card h-100">
+                        
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ character.name }}</h5>
+                            <p class="card-text"><strong>Age:</strong> {{ character.age }}</p>
+                            <p class="card-text"><strong>Personality:</strong> {{ character.personality|truncatewords:20 }}</p>
+                            <p class="card-text"><strong>Backstory:</strong> {{ character.backstory|truncatewords:20 }}</p>
+                            <a href="{% url 'interview' character.id %}" class="btn btn-primary mt-auto">Start Interview</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">No characters available yet. <a href="{% url 'create_character' %}" class="btn btn-success">Create one!</a></p>
+    {% endif %}
+{% endblock %}
