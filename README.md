@@ -1,4 +1,6 @@
 InkPersona
+
+
 InkPersona is a Django-based web application designed to help writers overcome writer's block by simulating interviews with fictional characters. Writers can interact with their characters, ask them questions, and receive contextually grounded responses based on their personalities and backstories. This tool is perfect for writers who need inspiration or direction for their stories.
 
 Table of Contents
