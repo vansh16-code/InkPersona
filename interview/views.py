@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CharacterProfileForm, InterviewForm
 from .models import CharacterProfile
-from .huggingface_service import generate_response
+from .llama import generate_response
 
 def homepage(request):
     characters = CharacterProfile.objects.all()
@@ -22,7 +22,7 @@ def create_character(request):
 from django.shortcuts import render, get_object_or_404
 from .models import CharacterProfile
 from .forms import InterviewForm
-from .huggingface_service import generate_response
+from .llama import generate_response
 
 def interview(request, character_id):
     character = get_object_or_404(CharacterProfile, id=character_id)
