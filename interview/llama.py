@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 
 client = OpenAI(
-    api_key= "",  
+    api_key= "",  # enter your api key here
     base_url="https://api.together.xyz/v1"
 )
 
